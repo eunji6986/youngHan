@@ -21,6 +21,7 @@ public class StaticMethod {
         System.out.println(sm.add());
 
         System.out.println(StaticMethod.minus(15,30));
+
     }
 
     String kind;
@@ -28,4 +29,5 @@ public class StaticMethod {
 
     static int width = 100; //폭
     static int hetght = 250; //높이
+
 }

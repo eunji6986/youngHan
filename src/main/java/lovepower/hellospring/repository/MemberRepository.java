@@ -3,6 +3,7 @@ package lovepower.hellospring.repository;
 
 import lovepower.hellospring.domain.Member;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface MemberRepository {

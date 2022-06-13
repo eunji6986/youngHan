@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=20d2bf0523242accf7b6ad358c83a8db"></script>
+    <title>Document</title>
+</head>
+<body>
+api쓰는거에만 초점을 맞춰서 x,y값을 활용하여 지도상에 마커를 띄운다.
+지역을 입력받고 -> x,y값으로 지도 띄우기
+
+<input type="text" id="region" onkeyup="fn_region();">
+
+<div id="map" style="width:500px;height:400px;"></div>
+
+</body>
+
+<script>
+
+    var x,y;
+
+    function fn_region(){
+        var region = $('#region').val();
+
+
+      $.ajax({
+        type: "get",
+        url:"https://dapi.kakao.com/v2/local/search/address.json",
+        headers: {'Authorization' : 'KakaoAK d94d9613a66c1a8dbec14919b3b45658'},
+        data: {"query":region}
+      }).done(
+        function(ok){
+            console.log(ok.documents[0].x,ok.documents[0].y);
+            x = ok.documents[0].x;
+            y = ok.documents[0].y;
+            container();
+          })
+          .fail();
+    }
+
+    function container(){
+      var container = document.getElementById('map');
+		    var options = {
+			center: new kakao.maps.LatLng(y,x),
+			level: 3
+		    };
+
+      var map = new kakao.maps.Map(container, options);
+     }
+
+
+
+
+
+</script>
+
+</html>
